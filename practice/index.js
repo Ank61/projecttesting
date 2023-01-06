@@ -1,30 +1,279 @@
-function Hashtable(size){
-this.size = size;
-this.key = this.initalArray(size);
-this.value = this.initalArray(size);
-this.limit =0;
-}
-HashTable.prototype.initalArray = function(size){
-    var array = [];
-    for(var i =0 ; i<size ; i++){
-        array.push(null)
-    }return array
-} 
-Hashtable.prototype.put= function (key,value){
-    if(this.limit <= this.size) throw 'Hastable is full'
-var hashedIndex = this.hash(key)
-//linear probing 
-while(this.key[hashedIndex]!=null){
-    hashedIndex = hashedIndex% this.size
-    hashedIndex++;
-}
-this.key[hashedIndex] =key;
-this.value[hashedIndex] = value;
-this.limit++
-console.log("this si where key is stored",this.key[hashedIndex])
-}
-var exampletable = new Hashtable(13);
-exampletable.put(7, "hi");
+// function test(...args){
+//     console.log("this spread0",sum(...args))
+// return [...args]
+// }
+// console.log(test([1,2,3,4,5],[3,4,5,6,7]))
+
+// const student= {
+//     name: "ankit",
+//     Designation : "JSE",
+//     Level:"Entry"
+// }
+// // let studentOne= {...student,
+// // name:"Amit"
+// // }
+// const {name, ...rest} = student
+
+// console.log(name,rest)
+
+
+
+// setImmediate((arg) => {
+//   console.log(`executing immediate: ${arg}`);
+// }, 'so immediate');
+// console.log('before immediate');
+// console.log('after immediate');
+
+const htttp = require('http');
+const { hostname } = require('os');
+
+const host = '127.0.0.1';
+const port = 3000;
+
+const server= htttp.createServer((req,res)=>{
+    res.statusCode=200;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.');
+});
+
+server.listen(port,host,()=>{
+    console.log(`server running on http://${host}:${port}/`)
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+// class Node {
+//     constructor(value){
+//         this.value =value;
+//         this.left =null;
+//         this.right = null;
+//     }
+// }
+// class BinarySearchTree{
+//     constructor(){
+//         this.root = null;
+//     }
+//     isEmpty(){
+//         return this.root===null;
+//     }
+//     insert(value){
+//         const newNode =new Node(value);
+//         if(this.isEmpty()){
+//             this.root=newNode;
+//         }
+//         else{
+//             this.insertion(this.root,newNode);
+//         }
+//     }
+//     insertion(root,newNode){
+//         if(newNode.value<root.value){
+//             if(root.left===null){
+//                 root.left = newNode;
+//             }
+//             else{
+//                 this.insertion(root.left,newNode)
+//             }
+//         }
+//         else{
+//             if(root.right===null){
+//                 root.right = newNode;
+//             }
+//             else{
+//                 this.insertion(root.right,newNode)
+//             }
+//         }
+//     }
+//     search(root ,value){
+//         if(!root){
+//             return false;
+//         }
+//         if(root.value===value){
+//             return true;
+//         }
+//         else if(value>root.value){
+//             return this.search(root.right,value)
+//         }
+//         else{
+//             return this.search( root.right , value)
+//         }
+//     }
+//     preOrder(root){
+//         if(root){
+//            console.log(root.value);
+//             this.preOrder(root.left);
+//             this.preOrder(root.right); 
+//         }
+//     }
+//     inOrder(root){
+//         if(root){
+//             this.inOrder(root.left)
+//             console.log(root.value)
+//             this.inOrder(root.right)
+//         }
+//     }
+//     postOrder(root){
+//         if(root){
+//             this.postOrder(root.left)
+//             this.postOrder(root.right)
+//             console.log(root.value)
+//         }
+//     }
+//     min(root){
+//         if(!root.left){
+//             return console.log(root.value)
+//         }
+//         else{
+//             return this.min(root.left)
+
+//         }
+//     }
+//     max(root){
+//         if(!root.right){
+//             return console.log(root.value)
+//         }
+//         else{
+//             return this.max(root.right)
+//         }
+//     }
+//     height(node){
+//         if(!node){
+//             return 0;
+//         }
+//         else{
+//             const leftheight = this.height(node.left);
+//             // console.log("This is 1 left root", node.left)
+//             const rightHeight = this.height(node.right);
+//             // console.log("This is 1 rrrgiht root", node.right)
+//             // console.log(leftheight,rightHeight)
+//             return Math.max(leftheight,rightHeight) +1;
+//         }
+//     }
+//     levelOrder(){
+//         const array = [];
+//         array.push(this.root)
+//         // console.log("This is arry" ,this.root, array.length)
+//         while(array.length){
+//             let curr = array.shift();
+//             console.log(curr.value)
+//             if(curr.left){
+//                 array.push(curr.left)
+//                 console.log("Next Layer")
+//             }
+//             if(curr.right){
+//                 array.push(curr.right)
+//                 console.log("Next Layer")
+//             }
+//         }
+//     }
+//     printLevel(node,level){
+//         if(!node){
+//             return 0;
+//         }
+//         if(level===1){
+//             return console.log(`${node.value} `);
+//         }
+//         else if(level>1){
+//             this.printLevel(node.left, level-1);
+//             this.printLevel(node.right, level-1);
+//         }
+//     }
+//     isBST(node,min,max){
+//         if(!node){
+//             return true;
+//         }
+//         if(node.value<min || node.value>max){
+//             return false;
+//         }
+//         else{
+//             return this.isBST(node.left,min,node.value) && this.isBST(node.right,node.value,max)
+//         }
+//     }
+// }
+
+// const bst = new BinarySearchTree()
+// bst.insert(10);
+// bst.insert(5);
+// bst.insert(15);
+// bst.insert(16);
+// bst.insert(20);
+// console.log("Is bst empty? =>", bst.isEmpty())
+// console.log("Does BST have? =>", bst.search(bst.root , 100))
+// // bst.preOrder(bst.root)
+// // bst.inOrder(bst.root)
+// // bst.postOrder(bst.root);
+// // bst.min(bst.root);
+// // bst.max(bst.root);
+// // console.log(bst.height(bst.root));
+// bst.levelOrder(bst.root);
+// // bst.printLevel(bst.root,4)
+// console.log("This is the result ",bst.isBST(bst.root,bst.min,bst.max))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function Hashtable(size){
+// this.size = size;
+// this.key = this.initalArray(size);
+// this.value = this.initalArray(size);
+// this.limit =0;
+// }
+// HashTable.prototype.initalArray = function(size){
+//     var array = [];
+//     for(var i =0 ; i<size ; i++){
+//         array.push(null)
+//     }return array
+// } 
+// Hashtable.prototype.put= function (key,value){
+//     if(this.limit <= this.size) throw 'Hastable is full'
+// var hashedIndex = this.hash(key)
+// //linear probing 
+// while(this.key[hashedIndex]!=null){
+//     hashedIndex = hashedIndex% this.size
+//     hashedIndex++;
+// }
+// this.key[hashedIndex] =key;
+// this.value[hashedIndex] = value;
+// this.limit++
+// console.log("this si where key is stored",this.key[hashedIndex])
+// }
+// var exampletable = new Hashtable(13);
+// exampletable.put(7, "hi");
 
 
 
